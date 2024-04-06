@@ -3,22 +3,7 @@ package com.ocado.basket.splitter;
 import java.util.List;
 import java.util.Map;
 
-public class BasketSolution {
-    private final Map<String, List<String>> deliveries;
-    private final int maxGroupSize;
-
-    public BasketSolution(Map<String, List<String>> deliveries, int maxGroupSize) {
-        this.deliveries = deliveries;
-        this.maxGroupSize = maxGroupSize;
-    }
-
-    public Map<String, List<String>> getDeliveries() {
-        return deliveries;
-    }
-
-    public int getMaxGroupSize() {
-        return maxGroupSize;
-    }
+public record BasketSolution(Map<String, List<String>> deliveries, int maxGroupSize) {
 
     private int numberOfGroups() {
         return deliveries.size();

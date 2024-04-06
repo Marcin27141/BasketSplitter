@@ -66,10 +66,10 @@ public class BasketSolutionTests {
     @MethodSource("getNrOfGroupsRange")
     void solutionWithLessGroupsIsBetterNoMatterTheMaxGroupSize(int deviation) {
         var mapWithLowerGroupSize = getDummyMapWithSize(
-                referenceSolution.getDeliveries().size() - Math.abs(deviation) - (deviation == 0 ? 1 : 0),
-                referenceSolution.getMaxGroupSize() - deviation
+                referenceSolution.deliveries().size() - Math.abs(deviation) - (deviation == 0 ? 1 : 0),
+                referenceSolution.maxGroupSize() - deviation
         );
-        var betterSolution = new BasketSolution(mapWithLowerGroupSize, referenceSolution.getMaxGroupSize());
+        var betterSolution = new BasketSolution(mapWithLowerGroupSize, referenceSolution.maxGroupSize());
         assertTrue(betterSolution.isBetterThan(referenceSolution));
     }
 
@@ -77,34 +77,34 @@ public class BasketSolutionTests {
     @MethodSource("getNrOfGroupsRange")
     void solutionWithSameNrOfGroupsIsBetterIfMaxGroupSizeIsHigher(int deviation) {
         var mapWithSameNrOfGroups = getDummyMapWithSize(
-                referenceSolution.getDeliveries().size(),
-                referenceSolution.getMaxGroupSize() + deviation
+                referenceSolution.deliveries().size(),
+                referenceSolution.maxGroupSize() + deviation
         );
-        var anotherSolution = new BasketSolution(mapWithSameNrOfGroups, referenceSolution.getMaxGroupSize() + deviation);
+        var anotherSolution = new BasketSolution(mapWithSameNrOfGroups, referenceSolution.maxGroupSize() + deviation);
         assertEquals(anotherSolution.isBetterThan(referenceSolution), deviation > 0);
     }
 
     @Test
     void appendingEmptyGroupShouldNotChangePreviousSolution() {
         var appended = BasketSolution.getSolutionWithAdditionalGroup("delivery 1", new ArrayList<>(), referenceSolution);
-        assertEquals(appended.getMaxGroupSize(), referenceSolution.getMaxGroupSize());
-        assertEquals(appended.getDeliveries().size(), referenceSolution.getDeliveries().size());
+        assertEquals(appended.maxGroupSize(), referenceSolution.maxGroupSize());
+        assertEquals(appended.deliveries().size(), referenceSolution.deliveries().size());
     }
 
     @Test
     void appendingSmallGroupShouldIncreaseGroupsSizeButNotMaxGroupSize() {
-        assumeTrue(referenceSolution.getMaxGroupSize() > 1);
+        assumeTrue(referenceSolution.maxGroupSize() > 1);
         var appended = BasketSolution.getSolutionWithAdditionalGroup("unique delivery", new ArrayList<>(List.of("product 1")), referenceSolution);
-        assertEquals(REFERENCE_SOLUTION_GROUPS_SIZE, appended.getMaxGroupSize());
-        assertEquals(REFERENCE_SOLUTION_NR_OF_GROUPS + 1, referenceSolution.getDeliveries().size());
+        assertEquals(REFERENCE_SOLUTION_GROUPS_SIZE, appended.maxGroupSize());
+        assertEquals(REFERENCE_SOLUTION_NR_OF_GROUPS + 1, referenceSolution.deliveries().size());
     }
 
     @Test
     void appendingBigGroupShouldIncreaseGroupsSizeAndMaxGroupSize() {
         var productsGroup = IntStream.range(0, REFERENCE_SOLUTION_GROUPS_SIZE + 1).mapToObj(i -> "product " + i).toList();
         var appended = BasketSolution.getSolutionWithAdditionalGroup("unique delivery", new ArrayList<>(productsGroup), referenceSolution);
-        assertTrue(REFERENCE_SOLUTION_GROUPS_SIZE < appended.getMaxGroupSize());
-        assertEquals(REFERENCE_SOLUTION_NR_OF_GROUPS + 1, referenceSolution.getDeliveries().size());
+        assertTrue(REFERENCE_SOLUTION_GROUPS_SIZE < appended.maxGroupSize());
+        assertEquals(REFERENCE_SOLUTION_NR_OF_GROUPS + 1, referenceSolution.deliveries().size());
     }
 
 }

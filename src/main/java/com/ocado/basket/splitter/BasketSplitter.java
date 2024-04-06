@@ -22,7 +22,7 @@ public class BasketSplitter {
     public Map<String, List<String>> split(List<String> items) throws IncompleteConfigurationException {
         makeSureProductsAppearInConfiguration(items);
         BasketSolution bestSolution = getBestSolutionForDeliveries(deliveryMethods, items);
-        return bestSolution.getDeliveries();
+        return bestSolution.deliveries();
     }
     private void makeSureProductsAppearInConfiguration(List<String> products) throws IncompleteConfigurationException {
         var productsNotPresentInConfiguration = products.stream().filter(p -> !deliveryForProducts.containsKey(p)).toList();
