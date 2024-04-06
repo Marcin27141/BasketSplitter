@@ -3,7 +3,6 @@ package com.ocado;
 import com.ocado.basket.BasketSplitter;
 import com.ocado.basket.ConfigurationException;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 

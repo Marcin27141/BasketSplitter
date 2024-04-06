@@ -17,6 +17,10 @@ public class BasketSolution {
         return deliveries;
     }
 
+    public int getMaxGroupSize() {
+        return maxGroupSize;
+    }
+
     private int numberOfGroups() {
         return deliveries.size();
     }
