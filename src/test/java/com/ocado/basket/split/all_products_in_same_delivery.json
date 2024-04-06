@@ -1,0 +1,8 @@
+{
+  "Cookies Oatmeal Raisin": ["Pick-up point", "Courier"],
+  "Cheese Cloth": ["Courier", "Parcel locker", "Same day delivery", "Next day shipping", "Pick-up point"],
+  "English Muffin": ["Mailbox delivery", "Courier", "In-store pick-up", "Parcel locker", "Next day shipping", "Express Collection"],
+  "Ecolab - Medallion": ["Mailbox delivery", "Parcel locker", "Courier", "In-store pick-up"],
+  "Chocolate - Unsweetened": ["Courier", "Parcel locker", "Same day delivery"]
+}
+

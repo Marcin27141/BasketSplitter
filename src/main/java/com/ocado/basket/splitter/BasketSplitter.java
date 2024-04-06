@@ -1,4 +1,7 @@
-package com.ocado.basket;
+package com.ocado.basket.splitter;
+
+import com.ocado.basket.splitter.exceptions.ConfigurationException;
+import com.ocado.basket.splitter.exceptions.IncompleteConfigurationException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +19,19 @@ public class BasketSplitter {
         deliveryMethods = deliveryForProducts.values().stream().flatMap(List::stream).collect(Collectors.toSet());
     }
 
-    public Map<String, List<String>> split(List<String> items) {
+    public Map<String, List<String>> split(List<String> items) throws IncompleteConfigurationException {
+        makeSureProductsAppearInConfiguration(items);
         BasketSolution bestSolution = getBestSolutionForDeliveries(deliveryMethods, items);
         return bestSolution.getDeliveries();
     }
+    private void makeSureProductsAppearInConfiguration(List<String> products) throws IncompleteConfigurationException {
+        var productsNotPresentInConfiguration = products.stream().filter(p -> !deliveryForProducts.containsKey(p)).toList();
+        if (!productsNotPresentInConfiguration.isEmpty()) {
+            throw new IncompleteConfigurationException("Following products form the basket were not specified in the configuration: " +
+                    String.join(", ", productsNotPresentInConfiguration));
+        }
+    }
+
 
     private BasketSolution getBestSolutionForDeliveries(Set<String> deliveries, List<String> products) {
         if (deliveries.size() == 1) {

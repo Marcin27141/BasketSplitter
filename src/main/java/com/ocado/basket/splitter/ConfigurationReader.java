@@ -1,7 +1,8 @@
-package com.ocado.basket;
+package com.ocado.basket.splitter;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ocado.basket.splitter.exceptions.ConfigurationException;
 
 import java.io.IOException;
 import java.nio.file.Paths;

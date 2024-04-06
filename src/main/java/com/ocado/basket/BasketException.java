@@ -1,4 +1,4 @@
-package com.ocado;
+package com.ocado.basket;
 
 import java.io.IOException;
 

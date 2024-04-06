@@ -1,7 +1,8 @@
-package com.ocado;
+package com.ocado.basket;
 
-import com.ocado.basket.BasketSplitter;
-import com.ocado.basket.ConfigurationException;
+import com.ocado.basket.splitter.BasketSplitter;
+import com.ocado.basket.splitter.exceptions.ConfigurationException;
+import com.ocado.basket.splitter.exceptions.IncompleteConfigurationException;
 
 import java.util.List;
 import java.util.Map;
@@ -13,12 +14,12 @@ public class Main {
     public static void main(String[] args) {
         try {
             splitBasket();
-        } catch (BasketException | ConfigurationException e) {
+        } catch (BasketException | ConfigurationException | IncompleteConfigurationException e) {
             System.err.println(e.getMessage());
         }
     }
 
-    private static void splitBasket() throws BasketException, ConfigurationException {
+    private static void splitBasket() throws BasketException, ConfigurationException, IncompleteConfigurationException {
         List<String> cartProducts = BasketFileReader.getProductsFromBasket(BASKET_FILEPATH);
         var basketSplitter = new BasketSplitter(DELIVERY_CONFIG_FILEPATH);
         var solution = basketSplitter.split(cartProducts);

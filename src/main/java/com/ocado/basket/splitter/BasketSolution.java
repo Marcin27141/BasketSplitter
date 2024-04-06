@@ -1,8 +1,7 @@
-package com.ocado.basket;
+package com.ocado.basket.splitter;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class BasketSolution {
     private final Map<String, List<String>> deliveries;

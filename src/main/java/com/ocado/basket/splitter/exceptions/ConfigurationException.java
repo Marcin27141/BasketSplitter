@@ -1,4 +1,4 @@
-package com.ocado.basket;
+package com.ocado.basket.splitter.exceptions;
 
 import java.io.IOException;
 

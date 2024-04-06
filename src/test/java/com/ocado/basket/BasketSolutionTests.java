@@ -1,13 +1,11 @@
-package com.ocado;
+package com.ocado.basket;
 
-import com.ocado.basket.BasketSolution;
-import com.ocado.basket.ConfigurationReader;
+import com.ocado.basket.splitter.BasketSolution;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,8 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class BasketSolutionTests {
-    private static int REFERENCE_SOLUTION_NR_OF_GROUPS = 3;
-    private static int REFERENCE_SOLUTION_GROUPS_SIZE = 3;
+    private final static int REFERENCE_SOLUTION_NR_OF_GROUPS = 3;
+    private final static int REFERENCE_SOLUTION_GROUPS_SIZE = 3;
     private static BasketSolution referenceSolution;
     private static BasketSolution emptySolution;
 
